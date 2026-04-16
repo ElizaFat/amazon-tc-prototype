@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazon — Terms Summary</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Amazon Ember', Arial, sans-serif;
+    background: #f3f3f3;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .phone-frame {
+    width: 390px;
+    min-height: 100vh;
+    background: #fff;
+    position: relative;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+  }
+
+  .status-bar {
+    background: #232f3e;
+    padding: 12px 20px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .status-bar span { color: #fff; font-size: 12px; }
+
+  .amazon-header {
+    background: #232f3e;
+    padding: 10px 16px 12px;
+    display: flex;
+    align-items: center;
+  }
+  .amazon-logo { color: #ff9900; font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+  .amazon-logo span { color: #fff; }
+  .header-right { margin-left: auto; color: #ccc; font-size: 11px; }
+
+  .section-header {
+    background: #f3f3f3;
+    padding: 8px 14px;
+    font-size: 11px;
+    color: #555;
+    font-weight: 500;
+    border-top: 0.5px solid #ddd;
+    border-bottom: 0.5px solid #ddd;
+  }
+
+  .alert-banner {
+    margin: 10px 14px;
+    padding: 10px 12px;
+    background: #fce4e4;
+    border: 1px solid #f5a0a0;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .alert-icon { font-size: 14px; flex-shrink: 0; }
+  .alert-text { font-size: 11px; color: #7a1010; line-height: 1.4; }
+  .alert-text strong { font-weight: 600; }
+
+  .label-card {
+    margin: 10px 14px;
+    border: 1.5px solid #ccc;
+    overflow: hidden;
+  }
+
+  .label-title {
+    background: #232f3e;
+    padding: 10px 14px;
+  }
+  .label-title h2 { color: #ff9900; font-size: 14px; font-weight: 600; }
+  .label-title p { color: #aaa; font-size: 10px; margin-top: 3px; }
+
+  .label-subtitle {
+    padding: 7px 14px;
+    background: #f8f8f8;
+    border-bottom: 0.5px solid #ddd;
+    font-size: 10px;
+    color: #666;
+  }
+
+  .grid-header {
+    display: grid;
+    grid-template-columns: 115px 1fr 1fr 1fr;
+    border-bottom: 1px solid #ccc;
+    background: #f0f0f0;
+  }
+  .gh-cell {
+    padding: 6px 6px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #444;
+    text-align: center;
+    border-right: 0.5px solid #ddd;
+  }
+  .gh-cell:first-child { text-align: left; }
+  .gh-cell:last-child { border-right: none; }
+
+  .grid-row {
+    display: grid;
+    grid-template-columns: 115px 1fr 1fr 1fr;
+    border-bottom: 0.5px solid #ddd;
+  }
+  .grid-row:last-child { border-bottom: none; }
+
+  .row-label {
+    padding: 7px 8px;
+    font-size: 11px;
+    color: #111;
+    font-weight: 500;
+    background: #f8f8f8;
+    border-right: 0.5px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .row-sub {
+    font-size: 9px;
+    color: #888;
+    font-weight: 400;
+    margin-top: 1px;
+  }
+
+  .cell {
+    padding: 6px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 0.5px solid #ddd;
+    min-height: 36px;
+  }
+  .cell:last-child { border-right: none; }
+
+  .pill {
+    font-size: 9px;
+    font-weight: 600;
+    padding: 3px 6px;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .pill-yes  { background: #ffeaa0; color: #7a5c00; }
+  .pill-no   { background: #e8f5e9; color: #1b5e20; }
+  .pill-opt  { background: #fff3e0; color: #7a3c00; }
+  .pill-req  { background: #fce4e4; color: #7a1010; }
+  .pill-na   { background: #f0f0f0; color: #999; }
+
+  .highlight-row .row-label { background: #fff8e1; }
+  .highlight-row .cell      { background: #fff8e1; }
+
+  .legend {
+    padding: 8px 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-top: 1px solid #ddd;
+    background: #f8f8f8;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 9px;
+    color: #555;
+  }
+
+  .btn-row {
+    padding: 12px 14px;
+    display: flex;
+    gap: 8px;
+  }
+  .btn-primary {
+    flex: 1;
+    background: #ff9900;
+    border: none;
+    padding: 11px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: #e88a00; }
+  .btn-secondary {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #aaa;
+    padding: 11px;
+    font-size: 13px;
+    color: #111;
+    cursor: pointer;
+  }
+  .btn-secondary:hover { background: #f5f5f5; }
+
+  .bottom-note {
+    padding: 0 14px 20px;
+    font-size: 10px;
+    color: #888;
+    text-align: center;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<div class="phone-frame">
+
+  <div class="status-bar">
+    <span>9:41</span>
+    <span>amazon.com</span>
+    <span>▲▲▲</span>
+  </div>
+
+  <div class="amazon-header">
+    <div class="amazon-logo"><span>amazon</span></div>
+    <div class="header-right">Sign up</div>
+  </div>
+
+  <div class="section-header">Before you agree — here's what you're signing up for</div>
+
+  <div class="alert-banner">
+    <div class="alert-icon">⚠</div>
+    <div class="alert-text">
+      <strong>Key clause:</strong> By continuing, you waive your right to a jury trial and class action lawsuits. All disputes go to binding arbitration.
+    </div>
+  </div>
+
+  <div class="label-card">
+    <div class="label-title">
+      <h2>Amazon — Terms summary</h2>
+      <p>Conditions of Use · Privacy Notice · Last updated May 2025</p>
+    </div>
+    <div class="label-subtitle">How Amazon uses your information and what you agree to</div>
+
+    <div class="grid-header">
+      <div class="gh-cell">Category</div>
+      <div class="gh-cell">Collected</div>
+      <div class="gh-cell">Shared</div>
+      <div class="gh-cell">Your control</div>
+    </div>
+
+    <div class="grid-row">
+      <div class="row-label">Purchase history<span class="row-sub">Orders, returns</span></div>
+      <div class="cell"><span class="pill pill-yes">Yes</span></div>
+      <div class="cell"><span class="pill pill-yes">3rd parties</span></div>
+      <div class="cell"><span class="pill pill-opt">Opt-out</span></div>
+    </div>
+
+    <div class="grid-row">
+      <div class="row-label">Browsing activity<span class="row-sub">Pages, clicks</span></div>
+      <div class="cell"><span class="pill pill-yes">Yes</span></div>
+      <div class="cell"><span class="pill pill-yes">Affiliates</span></div>
+      <div class="cell"><span class="pill pill-opt">Opt-out</span></div>
+    </div>
+
+    <div class="grid-row">
+      <div class="row-label">Contact info<span class="row-sub">Name, email, phone</span></div>
+      <div class="cell"><span class="pill pill-yes">Yes</span></div>
+      <div class="cell"><span class="pill pill-yes">Partners</span></div>
+      <div class="cell"><span class="pill pill-opt">Opt-out</span></div>
+    </div>
+
+    <div class="grid-row">
+      <div class="row-label">Payment info<span class="row-sub">Card, bank</span></div>
+      <div class="cell"><span class="pill pill-yes">Yes</span></div>
+      <div class="cell"><span class="pill pill-no">Not shared</span></div>
+      <div class="cell"><span class="pill pill-na">—</span></div>
+    </div>
+
+    <div class="grid-row">
+      <div class="row-label">Location data<span class="row-sub">Delivery address</span></div>
+      <div class="cell"><span class="pill pill-yes">Yes</span></div>
+      <div class="cell"><span class="pill pill-yes">Carriers</span></div>
+      <div class="cell"><span class="pill pill-na">Required</span></div>
+    </div>
+
+    <div class="grid-row highlight-row">
+      <div class="row-label">Dispute rights<span class="row-sub">Legal recourse</span></div>
+      <div class="cell"><span class="pill pill-req">Waived</span></div>
+      <div class="cell"><span class="pill pill-na">—</span></div>
+      <div class="cell"><span class="pill pill-req">No opt-out</span></div>
+    </div>
+
+    <div class="grid-row">
+      <div class="row-label">Auto-renewal<span class="row-sub">Billing</span></div>
+      <div class="cell"><span class="pill pill-yes">Yes</span></div>
+      <div class="cell"><span class="pill pill-na">—</span></div>
+      <div class="cell"><span class="pill pill-opt">Cancel anytime</span></div>
+    </div>
+
+    <div class="grid-row">
+      <div class="row-label">Health data<span class="row-sub">Pharmacy, wearables</span></div>
+      <div class="cell"><span class="pill pill-yes">If used</span></div>
+      <div class="cell"><span class="pill pill-no">Not shared</span></div>
+      <div class="cell"><span class="pill pill-opt">Opt-out</span></div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="pill pill-yes" style="font-size:8px">Yes</span> Collected/applies</div>
+      <div class="legend-item"><span class="pill pill-no" style="font-size:8px">No</span> Not collected/shared</div>
+      <div class="legend-item"><span class="pill pill-opt" style="font-size:8px">Opt-out</span> On by default; you can turn off</div>
+      <div class="legend-item"><span class="pill pill-req" style="font-size:8px">Waived</span> Right given up; no opt-out</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-secondary">Read full T&amp;C</button>
+    <button class="btn-primary">I agree &amp; continue</button>
+  </div>
+  <div class="bottom-note">By tapping "I agree", you accept Amazon's Conditions of Use and Privacy Notice including binding arbitration.</div>
+
+</div>
+</body>
+</html>
